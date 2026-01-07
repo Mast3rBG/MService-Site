@@ -1,117 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MService</title>
-
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <meta charset="UTF-8">
+  <title>MService | Plugin</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Particles background -->
 <div id="particles-js"></div>
 
-<!-- Header -->
 <header class="navbar">
-    <div class="logo">
-        <img src="Mlogo.png" alt="MService Logo">
-        <span>MService</span>
-    </div>
+  <div class="logo">
+    <img src="Mlogo.png">
+    <span>MService</span>
+  </div>
 
-    <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="plugin.html">Plugins</a>
-        <a href="info.html">Forms</a>
-        <a href="#">Support</a>
-    </nav>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="plugins.html">Plugins</a>
+  </nav>
 
-    <button class="discord-btn">Join Discord</button>
+  <button class="discord-btn">Join Discord</button>
 </header>
 
+<section class="plugin-details">
+  <h2 id="plugin-title"></h2>
+  <p class="price" id="plugin-price"></p>
+  <p class="desc" id="plugin-desc"></p>
 
+  <ul id="plugin-features"></ul>
 
-<!-- Hero Section -->
-<section class="hero" id="hero">
-    <div class="hero-text">
-        <h1>Welcome to MService</h1>
-        <p>High-quality plugins and services</p>
-        <button class="play-btn">Browse Plugins</button>
-    </div>
+  <button id="plugin-btn">Buy Now</button>
 </section>
 
-<!-- Welcome Section -->
-<section class="welcome">
-    <h2>Welcome to MService</h2>
-    <p>
-        MService provides professional plugins and custom solutions.
-        Preview plugins, read descriptions, and order directly.
-    </p>
-</section>
+<script>
+const plugins = {
+  element: {
+    title: "Element Plugin",
+    price: "€5.99",
+    desc: "Adds elemental powers such as fire, water, lightning, and earth.",
+    features: ["Multiple elements", "Permissions support", "Optimized"],
+    button: "Buy Now"
+  },
+  crystalmine: {
+    title: "CrystalMine Plugin",
+    price: "€9.99",
+    desc: "Advanced mining system with crystal drops and upgrades.",
+    features: ["Custom ores", "Upgrades", "Economy support"],
+    button: "Buy Now"
+  },
+  npclight: {
+    title: "NPCLight Plugin",
+    price: "€7.99",
+    desc: "Lightweight NPC plugin for shops and quests.",
+    features: ["Lag-free", "Custom skins", "Easy setup"],
+    button: "Buy Now"
+  },
+  custom: {
+    title: "Custom Plugin",
+    price: "From €19.99",
+    desc: "Fully custom plugins tailored to your server needs.",
+    features: ["Any idea", "Optimized code", "Full support"],
+    button: "Contact on Discord"
+  }
+};
 
-<!-- Plugins Section -->
-<section class="plugins">
-    <div class="plugin-card">
-        <img src="https://via.placeholder.com/800x400" alt="Core Plugin">
-        <div class="info">
-            <h3>Core Plugin</h3>
-            <p>Essential server management plugin with performance optimizations.</p>
-        </div>
-    </div>
+const params = new URLSearchParams(window.location.search);
+const plugin = plugins[params.get("plugin")] || plugins.element;
 
-    <div class="plugin-card">
-        <img src="https://via.placeholder.com/800x400" alt="Lifesteal Plugin">
-        <div class="info">
-            <h3>Lifesteal Plugin</h3>
-            <p>Fully configurable lifesteal system with ranks and abilities.</p>
-        </div>
-    </div>
+document.getElementById("plugin-title").textContent = plugin.title;
+document.getElementById("plugin-price").textContent = plugin.price;
+document.getElementById("plugin-desc").textContent = plugin.desc;
 
-    <div class="plugin-card">
-        <img src="https://via.placeholder.com/800x400" alt="Custom Plugin">
-        <div class="info">
-            <h3>Custom Plugin</h3>
-            <p>Custom-made plugins tailored to your server needs.</p>
-        </div>
-    </div>
-</section>
+const list = document.getElementById("plugin-features");
+plugin.features.forEach(f => {
+  const li = document.createElement("li");
+  li.textContent = "✔ " + f;
+  list.appendChild(li);
+});
 
-<!-- Store Section -->
-<section class="store">
-    <h2>MService Store</h2>
-    <div class="store-items">
-        <div class="item-card">
-            <img src="https://via.placeholder.com/150">
-            <h3>Basic Plugin</h3>
-            <p>€5.99</p>
-            <button>Add to Basket</button>
-        </div>
+document.getElementById("plugin-btn").textContent = plugin.button;
+</script>
 
-        <div class="item-card">
-            <img src="https://via.placeholder.com/150">
-            <h3>Premium Plugin</h3>
-            <p>€14.99</p>
-            <button>Add to Basket</button>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>© 2025 MService. All rights reserved.</p>
-</footer>
-
-<!-- Particles Config -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 particlesJS("particles-js", {
   particles: {
     number: { value: 80 },
+    color: { value: "#ff0000" },
     size: { value: 3 },
     move: { speed: 2 },
-    line_linked: { enable: true },
-    color: { value: "#ff0000" }
+    line_linked: { enable: true }
   }
 });
 </script>

@@ -1,4 +1,5 @@
-// Lightweight particles for header background
+<script>
+/* Lightweight particles for header background */
 (function(){
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
@@ -36,7 +37,6 @@
 
   function draw(){
     ctx.clearRect(0,0,w,h);
-    // subtle overlay so particles are visible
     ctx.fillStyle = 'rgba(0,0,0,0.06)';
     ctx.fillRect(0,0,w,h);
 
@@ -60,3 +60,4 @@
 
   draw();
 })();
+</script>
