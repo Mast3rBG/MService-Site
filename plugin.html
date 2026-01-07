@@ -1,142 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MService — Plugin</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MService — Plugins</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    /* Plugin card style like store */
+    .plugins {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 40px;
+    }
+
+    .plugin-link {
+        text-decoration: none;
+    }
+
+    .plugin-card {
+        background: red;
+        padding: 20px;
+        border-radius: 10px;
+        width: 250px;
+        text-align: center;
+        transition: 0.3s;
+        border: 2px solid red;
+    }
+
+    .plugin-card:hover {
+        background: red;
+        color: white;
+        cursor: pointer;
+    }
+
+    .plugin-card h3 {
+        margin: 10px 0;
+    }
+
+    .plugin-card p {
+        font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
-<header class="site-header small">
-  <canvas id="hero-canvas-2" class="hero-canvas" aria-hidden="true"></canvas>
+<div id="particles-js"></div>
 
-  <div class="topbar">
-    <div class="logo-wrap">
-      <img src="logo.png" alt="MService logo" class="logo">
-    </div>
-
-    <nav class="topnav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="plugins.html" class="nav-link">Plugins</a>
-      <a href="info.html" class="nav-link">Info</a>
-    </nav>
-
-    <div class="auth-links">
-      <a href="#" class="auth-link">Log In</a>
-      <a href="#" class="auth-link register">Register</a>
-    </div>
+<header class="navbar">
+  <div class="logo">
+    <img src="Mlogo.png">
+    <span>MService</span>
   </div>
 
-  <div class="hero-content small">
-    <h1 class="hero-title" id="plugin-title">Plugin</h1>
-    <p class="hero-sub" id="plugin-sub">Plugin description</p>
-  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="plugin.html">Plugins</a>
+    <a href="info.html">Forms</a>
+  </nav>
+
+  <button class="discord-btn">Join Discord</button>
 </header>
 
 <main class="site-main">
+  <h1 style="text-align:center; margin-top:100px;">Our Plugins</h1>
 
-  <section class="plugin-details-box">
-    <p class="price" id="plugin-price"></p>
+  <section class="plugins">
+    <a href="plugin-element.html" class="plugin-link">
+      <div class="plugin-card">
+        <h3>Element Plugin</h3>
+        <p>Elemental powers and abilities.</p>
+        <p class="price">€5.99</p>
+      </div>
+    </a>
 
-    <p class="desc" id="plugin-desc"></p>
+    <a href="plugin-crystalmine.html" class="plugin-link">
+      <div class="plugin-card">
+        <h3>CrystalMine Plugin</h3>
+        <p>Advanced mining mechanics.</p>
+        <p class="price">€9.99</p>
+      </div>
+    </a>
 
-    <ul class="plugin-features" id="plugin-features"></ul>
+    <a href="plugin-npclight.html" class="plugin-link">
+      <div class="plugin-card">
+        <h3>NPCLight Plugin</h3>
+        <p>Lightweight NPC system.</p>
+        <p class="price">€7.99</p>
+      </div>
+    </a>
 
-    <a id="plugin-button" class="order-btn" href="#" target="_blank">
-      Buy Now
+    <a href="plugin-custom.html" class="plugin-link">
+      <div class="plugin-card">
+        <h3>Custom Plugin</h3>
+        <p>Custom-made plugins.</p>
+        <p class="price">From €19.99</p>
+      </div>
     </a>
   </section>
-
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p>&copy; <span id="year-plugins"></span> MService</p>
-  </div>
+<footer>
+  <p style="text-align:center;">© 2025 MService</p>
 </footer>
 
-<script src="scripts.js"></script>
-
 <script>
-const plugins = {
-  element: {
-    title: "Element Plugin",
-    sub: "Elemental powers and abilities",
-    price: "£5.99",
-    desc: "Adds elemental abilities such as fire, water, lightning, and earth with balanced gameplay and full configuration.",
-    features: [
-      "Multiple elements",
-      "Permissions support",
-      "Optimized performance",
-      "Easy configuration"
-    ],
-    button: "Buy Now",
-    link: "#"
-  },
-  crystalmine: {
-    title: "CrystalMine Plugin",
-    sub: "Advanced mining mechanics",
-    price: "£9.99",
-    desc: "Introduces advanced mining systems with crystal drops, upgrades, and custom mechanics.",
-    features: [
-      "Custom ores",
-      "Upgrade system",
-      "Economy support",
-      "Highly optimized"
-    ],
-    button: "Buy Now",
-    link: "#"
-  },
-  npclight: {
-    title: "NPCLight Plugin",
-    sub: "Lightweight NPC system",
-    price: "£7.99",
-    desc: "A lightweight NPC system for shops, quests, and interactions without server lag.",
-    features: [
-      "Lag-free NPCs",
-      "Custom skins",
-      "Easy setup",
-      "Server-friendly"
-    ],
-    button: "Buy Now",
-    link: "#"
-  },
-  custom: {
-    title: "Custom Plugin",
-    sub: "Tailored solutions",
-    price: "From £19.99",
-    desc: "Fully custom plugins built specifically for your server and your ideas.",
-    features: [
-      "Any concept",
-      "Optimized code",
-      "Full support",
-      "Custom features"
-    ],
-    button: "Contact on Discord",
-    link: "https://discord.gg/CSTcgcSHQa"
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    size: { value: 3 },
+    move: { speed: 2 },
+    line_linked: { enable: true },
+    color: { value: "#ff0000" } // Red color
   }
-};
-
-const params = new URLSearchParams(window.location.search);
-const key = params.get("plugin") || "element";
-const data = plugins[key];
-
-document.getElementById("plugin-title").textContent = data.title;
-document.getElementById("plugin-sub").textContent = data.sub;
-document.getElementById("plugin-price").textContent = data.price;
-document.getElementById("plugin-desc").textContent = data.desc;
-
-const list = document.getElementById("plugin-features");
-data.features.forEach(f => {
-  const li = document.createElement("li");
-  li.textContent = "✔ " + f;
-  list.appendChild(li);
 });
-
-const btn = document.getElementById("plugin-button");
-btn.textContent = data.button;
-btn.href = data.link;
 </script>
 
 </body>

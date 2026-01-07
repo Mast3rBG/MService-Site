@@ -157,3 +157,178 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
 }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: white;
+
+    padding-top: 70px; /* 👈 ADD THIS LINE */
+}
+
+
+/* Particles */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 40px;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Nav links */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: red;
+}
+
+/* Discord button */
+.discord-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    margin-right: 12px; /* moves button inward */
+}
+
+.discord-btn:hover {
+    background: darkred;
+}
+
+
+/* HERO WHITE EFFECT ON NAV HOVER */
+.nav-links a:hover ~ .hero,
+.nav-links a:hover {
+    filter: brightness(1.8);
+}
+
+/* Buttons */
+button {
+    background: red;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: darkred;
+}
+
+/* Hero */
+.hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+/* Welcome */
+.welcome {
+    padding: 60px;
+    text-align: center;
+}
+
+/* Plugins */
+.plugins {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 30px;
+    padding: 40px;
+}
+
+.plugin-card {
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.plugin-card img {
+    width: 100%;
+}
+
+.info {
+    padding: 15px;
+}
+
+/* Store */
+.store {
+    padding: 40px;
+    text-align: center;
+}
+
+.store-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item-card {
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+}
+.plugin-card h3,
+.plugin-card .price,
+.plugin-card p.desc {
+    color: red; /* plugin name and price red, description white */
+}
+
+.plugin-card p.desc {
+    color: white; /* make description always white */
+}
+
+.plugin-card:hover h3,
+.plugin-card:hover .price,
+.plugin-card:hover p.desc {
+    color: white; /* all text white on hover */
+}
+
