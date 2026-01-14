@@ -21,7 +21,7 @@
     }
 
     .plugin-card {
-        background: red;
+        background: #111;
         padding: 20px;
         border-radius: 10px;
         width: 250px;
@@ -109,11 +109,24 @@
 <script>
 particlesJS("particles-js", {
   particles: {
-    number: { value: 80 },
-    size: { value: 3 },
-    move: { speed: 2 },
-    line_linked: { enable: true },
-    color: { value: "#ff0000" } // Red color
+    number: {
+      value: 80
+    },
+    size: {
+      value: 3
+    },
+    move: {
+      speed: 2
+    },
+    color: {
+      value: "#ff0000"   // 🔴 red dots
+    },
+    line_linked: {
+      enable: true,
+      color: "#777777",  // ⚪ gray lines (use #000000 for black)
+      opacity: 0.4,
+      width: 1
+    }
   }
 });
 </script>

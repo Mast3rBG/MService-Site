@@ -1,56 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MService</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <style>
-      /* Plugin card style like store */
-      .plugins {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 20px;
-          padding: 40px;
-      }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MService</title>
 
-      .plugin-link {
-          text-decoration: none;
-      }
+<link rel="stylesheet" href="style.css" />
 
-      .plugin-card {
-          background: #111;
-          padding: 20px;
-          border-radius: 10px;
-          width: 250px;
-          text-align: center;
-          transition: 0.3s;
-          border: 2px solid red;
-      }
+<style>
+/* HERO CANVAS */
+.hero {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
-      .plugin-card:hover {
-          background: red;
-          color: white;
-          cursor: pointer;
-      }
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
 
-      .plugin-card h3 {
-          margin: 10px 0;
-      }
+.hero > *:not(canvas) {
+    position: relative;
+    z-index: 1;
+}
 
-      .plugin-card p {
-          font-size: 14px;
-      }
-    </style>
+/* HERO TEXT */
+.hero-text {
+    text-align: center;
+    color: black;
+}
+
+/* PLUGINS */
+.plugins {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.plugin-link {
+    text-decoration: none;
+}
+
+.plugin-card {
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    border: 2px solid red;
+    transition: 0.3s;
+    color: white;
+}
+
+.plugin-card:hover {
+    background: red;
+}
+
+.plugin-card h3,
+.plugin-card .price {
+    color: red;
+}
+
+.plugin-card:hover h3,
+.plugin-card:hover p {
+    color: white;
+}
+</style>
 </head>
+
 <body>
 
-<!-- Particles background -->
-<div id="particles-js"></div>
-
-<!-- Header -->
+<!-- NAVBAR -->
 <header class="navbar">
     <div class="logo">
         <img src="Mlogo.png" alt="MService Logo">
@@ -67,73 +97,113 @@
     <button class="discord-btn">Join Discord</button>
 </header>
 
-<!-- Hero Section -->
-<section class="hero" id="hero">
+<!-- HERO -->
+<section class="hero">
+    <canvas id="hero-canvas"></canvas>
+
     <div class="hero-text">
         <h1>Welcome to MService</h1>
         <p>High-quality plugins and services</p>
-        <button class="play-btn"><a href="plugin.html" style="color:white;text-decoration:none;">Browse Plugins</a></button>
+        <button>
+            <a href="plugin.html" style="color:white;text-decoration:none;">Browse Plugins</a>
+        </button>
     </div>
 </section>
 
-<!-- Welcome Section -->
-<section class="welcome">
-    <h2>Welcome to MService</h2>
-    <p>
-        MService provides professional plugins and custom solutions.
-        Preview plugins, read descriptions, and order directly.
-    </p>
-</section>
-
-<!-- Plugins Section -->
+<!-- PLUGINS -->
 <section class="plugins">
-    <a href="plugin-element.html" class="plugin-link">
+    <a href="#" class="plugin-link">
         <div class="plugin-card">
             <h3>Element Plugin</h3>
-            <p>Elemental powers and abilities.</p>
+            <p>Elemental powers</p>
             <p class="price">€5.99</p>
-        </div>
-    </a>
-
-    <a href="plugin-crystalmine.html" class="plugin-link">
-        <div class="plugin-card">
-            <h3>CrystalMine Plugin</h3>
-            <p>Advanced mining mechanics.</p>
-            <p class="price">€9.99</p>
-        </div>
-    </a>
-
-    <a href="plugin-npclight.html" class="plugin-link">
-        <div class="plugin-card">
-            <h3>NPCLight Plugin</h3>
-            <p>Lightweight NPC system.</p>
-            <p class="price">€7.99</p>
-        </div>
-    </a>
-
-    <a href="plugin-custom.html" class="plugin-link">
-        <div class="plugin-card">
-            <h3>Custom Plugin</h3>
-            <p>Custom-made plugins.</p>
-            <p class="price">From €19.99</p>
         </div>
     </a>
 </section>
 
 <footer>
-    <p>© 2025 MService. All rights reserved.</p>
+    <p style="text-align:center;">© 2026 MService</p>
 </footer>
 
+<!-- PARTICLES SCRIPT -->
 <script>
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 80 },
-    size: { value: 3 },
-    move: { speed: 2 },
-    line_linked: { enable: true },
-    color: { value: "#ff0000" } // Red color
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const hero = document.querySelector('.hero');
+
+  let w, h;
+  const particles = [];
+  const COUNT = 50;
+  const LINK_DIST = 120;
+
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+
+  function resize(){
+    const r = hero.getBoundingClientRect();
+    canvas.width = r.width;
+    canvas.height = r.height;
+    w = canvas.width;
+    h = canvas.height;
   }
-});
+  window.addEventListener('resize', resize);
+  resize();
+
+  for (let i = 0; i < COUNT; i++){
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: rand(1.2, 2.6),
+      vx: rand(-0.25, 0.25),
+      vy: rand(0.2, 0.9),
+      a: rand(0.6, 1)
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+
+    /* lines */
+    for (let i=0;i<particles.length;i++){
+      for (let j=i+1;j<particles.length;j++){
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d = Math.hypot(dx,dy);
+
+        if (d < LINK_DIST){
+          ctx.strokeStyle = `rgba(0,0,0,${1 - d / LINK_DIST})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* dots */
+    for (let p of particles){
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.y > h) p.y = 0;
+      if (p.x > w) p.x = 0;
+      if (p.x < 0) p.x = w;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,0,0,${p.a})`;
+      ctx.shadowColor = 'rgba(255,0,0,0.6)';
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
 </script>
 
 </body>
